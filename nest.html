@@ -155,6 +155,9 @@
     .dep-main {
       flex: 1;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .dep-minutes {
@@ -168,14 +171,15 @@
       color: #1a6b5a;
     }
 
-    .dep-om {
+    .dep-min-label {
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       color: #9e8fb8;
-      margin-right: 4px;
+      margin-top: 1px;
+      text-transform: lowercase;
     }
 
-    .bus-section .dep-om {
+    .bus-section .dep-min-label {
       color: #6daa9e;
     }
 
@@ -323,7 +327,7 @@
       const minMatch = display.match(/^(\d+)\s*min/);
       let mainHtml = '';
       if (minMatch) {
-        mainHtml = `<span class="dep-om">Om</span><span class="dep-minutes">${minMatch[1]}</span><span class="dep-om"> min</span>`;
+        mainHtml = `<span class="dep-minutes">${minMatch[1]}</span><span class="dep-min-label">min</span>`;
       } else {
         mainHtml = `<span class="dep-minutes" style="font-size:2rem;">${display}</span>`;
       }
