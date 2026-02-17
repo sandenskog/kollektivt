@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Läget med bussar och tåg</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 50%, #e0f7fa 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #5c4d7d;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9e8fb8;
+      margin-bottom: 24px;
+    }
+
+    .update-info {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #b0a0c8;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed #e8d5f5;
+    }
+
+    .section-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #5c4d7d;
+    }
+
+    .section-subtitle {
+      font-size: 0.78rem;
+      color: #a094b8;
+      font-weight: 600;
+    }
+
+    .departure-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      transition: transform 0.15s ease;
+    }
+
+    .departure-row:hover {
+      transform: scale(1.01);
+    }
+
+    .train-row {
+      background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+    }
+
+    .bus-row {
+      background: linear-gradient(135deg, #e0f2f1 0%, #e8f5e9 100%);
+    }
+
+    .departure-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .departure-destination {
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: #a094b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .departure-times {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .departure-clock {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
+    }
+
+    .departure-scheduled {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #c0b4d4;
+      line-height: 1.1;
+    }
+
+    .departure-expected-time {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #e57373;
+      line-height: 1.1;
+    }
+
+    .departure-display {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #5c4d7d;
+      line-height: 1;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .bus-row .departure-display {
+      color: #2e7d6f;
+    }
+
+    .departure-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .status-ontime {
+      background: #c8e6c9;
+      color: #388e3c;
+    }
+
+    .status-delayed {
+      background: #ffcdd2;
+      color: #c62828;
+    }
+
+    .line-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 22px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0 5px;
+      flex-shrink: 0;
+    }
+
+    .line-badge-train {
+      background: #ce93d8;
+      color: white;
+    }
+
+    .line-badge-bus {
+      background: #80cbc4;
+      color: white;
+    }
+
+    .no-departures {
+      text-align: center;
+      padding: 20px;
+      color: #b0a0c8;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 24px;
+      color: #b0a0c8;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #e8d5f5;
+      border-top-color: #ce93d8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .deviation {
+      font-size: 0.72rem;
+      color: #e57373;
+      margin-top: 4px;
+      padding: 4px 8px;
+      background: #fce4ec;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .clouds {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      animation: float linear infinite;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .cloud-1 {
+      width: 80px; height: 30px; top: 8%; left: -100px;
+      animation-duration: 40s;
+    }
+    .cloud-1::before { width: 40px; height: 40px; top: -20px; left: 15px; }
+    .cloud-1::after { width: 30px; height: 30px; top: -12px; left: 45px; }
+
+    .cloud-2 {
+      width: 100px; height: 35px; top: 20%; left: -120px;
+      animation-duration: 55s; animation-delay: 8s;
+    }
+    .cloud-2::before { width: 50px; height: 50px; top: -25px; left: 20px; }
+    .cloud-2::after { width: 35px; height: 35px; top: -15px; left: 55px; }
+
+    .cloud-3 {
+      width: 60px; height: 22px; top: 35%; left: -80px;
+      animation-duration: 45s; animation-delay: 15s;
+    }
+    .cloud-3::before { width: 30px; height: 30px; top: -15px; left: 10px; }
+    .cloud-3::after { width: 22px; height: 22px; top: -10px; left: 32px; }
+
+    @keyframes float {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(100vw + 200px)); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5rem; }
+      .section { padding: 14px; }
+      .departure-row { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="clouds">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+  </div>
+
+  <div class="container">
+    <h1>&#127752; L&auml;get med bussar och t&aring;g &#127752;</h1>
+    <p class="subtitle">Realtidsavg&aring;ngar fr&aring;n Vega</p>
+    <p class="update-info" id="update-info">Laddar...</p>
+
+    <div class="section" id="train-section">
+      <div class="section-header">
+        <span class="section-icon">&#128646;</span>
+        <div>
+          <div class="section-title">Pendelt&aring;g fr&aring;n Vega</div>
+          <div class="section-subtitle">Mot Stockholm C / B&aring;lsta</div>
+        </div>
+      </div>
+      <div id="train-departures" class="loading">
+        <div class="loading-spinner"></div>
+        <div>H&auml;mtar avg&aring;ngar...</div>
+      </div>
+    </div>
+
+    <div class="section" id="bus-section">
+      <div class="section-header">
+        <span class="section-icon">&#128653;</span>
+        <div>
+          <div class="section-title">Buss 810 fr&aring;n Kvarntorpsv&auml;gen</div>
+          <div class="section-subtitle">Mot Gullmarsplan</div>
+        </div>
+      </div>
+      <div id="bus-departures" class="loading">
+        <div class="loading-spinner"></div>
+        <div>H&auml;mtar avg&aring;ngar...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const VEGA_SITE_ID = 9733;
+    const KVARN_SITE_ID = 8262;
+    const API_BASE = 'https://transport.integration.sl.se/v1/sites';
+    const REFRESH_INTERVAL = 30000; // 30 seconds
+
+    function formatTime(isoString) {
+      if (!isoString) return '';
+      const d = new Date(isoString);
+      return d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function getDelayInfo(scheduled, expected) {
+      if (!scheduled || !expected) return null;
+      const sched = new Date(scheduled);
+      const exp = new Date(expected);
+      const diffMs = exp - sched;
+      const diffMin = Math.round(diffMs / 60000);
+      if (diffMin <= 0) {
+        return { delayed: false, text: 'I tid' };
+      }
+      return { delayed: true, text: `+${diffMin} min sen` };
+    }
+
+    function renderDeparture(dep, type) {
+      const rowClass = type === 'train' ? 'train-row' : 'bus-row';
+      const badgeClass = type === 'train' ? 'line-badge-train' : 'line-badge-bus';
+      const line = dep.line?.designation || '?';
+      const destination = dep.destination || 'Okänd';
+      const display = dep.display || '';
+      const scheduled = formatTime(dep.scheduled);
+      const expected = formatTime(dep.expected);
+      const delayInfo = getDelayInfo(dep.scheduled, dep.expected);
+
+      let clockHtml = '';
+      let statusHtml = '';
+
+      if (delayInfo) {
+        if (delayInfo.delayed) {
+          clockHtml = `
+            <span class="departure-scheduled" style="text-decoration: line-through;">${scheduled}</span>
+            <span class="departure-expected-time">${expected}</span>
+          `;
+          statusHtml = `<span class="departure-status status-delayed">${delayInfo.text}</span>`;
+        } else {
+          clockHtml = `<span class="departure-scheduled">${scheduled}</span>`;
+          statusHtml = `<span class="departure-status status-ontime">I tid</span>`;
+        }
+      } else {
+        clockHtml = `<span class="departure-scheduled">${scheduled}</span>`;
+      }
+
+      // Prefix "Om " to relative times like "2 min", but not absolute times like "18:30"
+      let displayText = display;
+      if (display && /^\d+\s*min/.test(display)) {
+        displayText = `Om ${display}`;
+      }
+
+      let deviationHtml = '';
+      if (dep.deviations && dep.deviations.length > 0) {
+        deviationHtml = dep.deviations
+          .map(d => `<div class="deviation">&#9888;&#65039; ${d.message}</div>`)
+          .join('');
+      }
+
+      return `
+        <div class="departure-row ${rowClass}">
+          <div class="departure-left">
+            <span class="line-badge ${badgeClass}">${line}</span>
+            <span class="departure-destination">${destination}</span>
+          </div>
+          <div class="departure-times">
+            <div class="departure-clock">
+              ${clockHtml}
+            </div>
+            <span class="departure-display">${displayText}</span>
+            ${statusHtml}
+          </div>
+          ${deviationHtml ? `<div style="width:100%">${deviationHtml}</div>` : ''}
+        </div>
+      `;
+    }
+
+    async function fetchDepartures(siteId) {
+      const url = `${API_BASE}/${siteId}/departures`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    }
+
+    async function updateTrains() {
+      const container = document.getElementById('train-departures');
+      try {
+        const data = await fetchDepartures(VEGA_SITE_ID);
+        const departures = (data.departures || [])
+          .filter(d =>
+            d.line?.transport_mode === 'TRAIN' &&
+            d.direction_code === 2
+          )
+          .slice(0, 4);
+
+        if (departures.length === 0) {
+          container.innerHTML = '<div class="no-departures">&#128564; Inga kommande pendelt&aring;g mot Stockholm just nu</div>';
+        } else {
+          container.innerHTML = departures.map(d => renderDeparture(d, 'train')).join('');
+        }
+      } catch (err) {
+        container.innerHTML = '<div class="no-departures">&#128533; Kunde inte h&auml;mta avg&aring;ngar</div>';
+        console.error('Train fetch error:', err);
+      }
+    }
+
+    async function updateBuses() {
+      const container = document.getElementById('bus-departures');
+      try {
+        const data = await fetchDepartures(KVARN_SITE_ID);
+        const departures = (data.departures || [])
+          .filter(d =>
+            d.line?.designation === '810' &&
+            d.direction_code === 2
+          )
+          .slice(0, 4);
+
+        if (departures.length === 0) {
+          container.innerHTML = '<div class="no-departures">&#128564; Inga kommande buss 810 mot Gullmarsplan just nu</div>';
+        } else {
+          container.innerHTML = departures.map(d => renderDeparture(d, 'bus')).join('');
+        }
+      } catch (err) {
+        container.innerHTML = '<div class="no-departures">&#128533; Kunde inte h&auml;mta avg&aring;ngar</div>';
+        console.error('Bus fetch error:', err);
+      }
+    }
+
+    function updateTimestamp() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('update-info').textContent = `Senast uppdaterad: ${time} \u2022 Uppdateras var 30:e sekund`;
+    }
+
+    async function refreshAll() {
+      await Promise.all([updateTrains(), updateBuses()]);
+      updateTimestamp();
+    }
+
+    refreshAll();
+    setInterval(refreshAll, REFRESH_INTERVAL);
+  </script>
+</body>
+</html>
