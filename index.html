@@ -130,7 +130,7 @@
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: clamp(6px, 2.5vw, 14px);
       flex-shrink: 0;
     }
 
@@ -142,14 +142,14 @@
     }
 
     .departure-scheduled {
-      font-size: 1.6rem;
+      font-size: clamp(1rem, 4vw, 1.6rem);
       font-weight: 800;
       color: #c0b4d4;
       line-height: 1.1;
     }
 
     .departure-expected-time {
-      font-size: 1.6rem;
+      font-size: clamp(1rem, 4vw, 1.6rem);
       font-weight: 800;
       color: #e57373;
       line-height: 1.1;
@@ -157,7 +157,7 @@
 
     .departure-display {
       font-weight: 800;
-      font-size: 1.6rem;
+      font-size: clamp(1rem, 4vw, 1.6rem);
       color: #5c4d7d;
       line-height: 1;
       text-align: right;
@@ -169,9 +169,9 @@
     }
 
     .departure-status {
-      font-size: 0.7rem;
+      font-size: clamp(0.55rem, 1.8vw, 0.7rem);
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 6px;
       white-space: nowrap;
     }
@@ -306,9 +306,12 @@
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 1.5rem; }
-      .section { padding: 14px; }
-      .departure-row { padding: 8px 10px; }
+      h1 { font-size: 1.4rem; }
+      .section { padding: 12px; }
+      .departure-row { padding: 8px 8px; gap: 4px; }
+      .departure-left { gap: 5px; }
+      .line-badge { min-width: 28px; height: 20px; font-size: 0.6rem; padding: 0 4px; }
+      .departure-destination { font-size: 0.68rem; }
     }
   </style>
 </head>
