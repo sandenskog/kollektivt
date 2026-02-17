@@ -26,6 +26,11 @@
       margin: 0 auto;
     }
 
+    .sections-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
     h1 {
       text-align: center;
       font-size: 1.8rem;
@@ -305,6 +310,57 @@
       z-index: 1;
     }
 
+    /* Nest Hub: landscape screen, short height (600-800px) */
+    @media (orientation: landscape) and (max-height: 800px) and (min-width: 800px) {
+      body {
+        padding: 10px 20px;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      h1 { font-size: 1.4rem; margin-bottom: 4px; }
+      .subtitle { font-size: 0.75rem; margin-bottom: 10px; }
+      .update-info { font-size: 0.65rem; margin-bottom: 10px; }
+
+      .sections-wrapper {
+        flex-direction: row;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .section {
+        flex: 1;
+        margin-bottom: 0;
+        padding: 14px;
+      }
+
+      .section-header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+      }
+
+      .section-icon { font-size: 1.5rem; }
+      .section-title { font-size: 0.95rem; }
+      .section-subtitle { font-size: 0.7rem; }
+
+      .departure-row { padding: 8px 10px; margin-bottom: 6px; }
+      .departure-scheduled { font-size: 1.1rem; }
+      .departure-expected-time { font-size: 1.1rem; }
+      .departure-display { font-size: 1.1rem; }
+      .departure-status { font-size: 0.6rem; }
+      .line-badge { min-width: 28px; height: 20px; font-size: 0.65rem; }
+
+      .clouds { display: none; }
+    }
+
     @media (max-width: 480px) {
       h1 { font-size: 1.4rem; }
       .section { padding: 12px; }
@@ -327,31 +383,33 @@
     <p class="subtitle">Realtidsavg&aring;ngar fr&aring;n Vega</p>
     <p class="update-info" id="update-info">Laddar...</p>
 
-    <div class="section" id="train-section">
-      <div class="section-header">
-        <span class="section-icon">&#128646;</span>
-        <div>
-          <div class="section-title">Pendelt&aring;g fr&aring;n Vega</div>
-          <div class="section-subtitle">Mot Stockholm C / B&aring;lsta</div>
+    <div class="sections-wrapper">
+      <div class="section" id="train-section">
+        <div class="section-header">
+          <span class="section-icon">&#128646;</span>
+          <div>
+            <div class="section-title">Pendelt&aring;g fr&aring;n Vega</div>
+            <div class="section-subtitle">Mot Stockholm C / B&aring;lsta</div>
+          </div>
+        </div>
+        <div id="train-departures" class="loading">
+          <div class="loading-spinner"></div>
+          <div>H&auml;mtar avg&aring;ngar...</div>
         </div>
       </div>
-      <div id="train-departures" class="loading">
-        <div class="loading-spinner"></div>
-        <div>H&auml;mtar avg&aring;ngar...</div>
-      </div>
-    </div>
 
-    <div class="section" id="bus-section">
-      <div class="section-header">
-        <span class="section-icon">&#128653;</span>
-        <div>
-          <div class="section-title">Buss 810 fr&aring;n Kvarntorpsv&auml;gen</div>
-          <div class="section-subtitle">Mot Gullmarsplan</div>
+      <div class="section" id="bus-section">
+        <div class="section-header">
+          <span class="section-icon">&#128653;</span>
+          <div>
+            <div class="section-title">Buss 810 fr&aring;n Kvarntorpsv&auml;gen</div>
+            <div class="section-subtitle">Mot Gullmarsplan</div>
+          </div>
         </div>
-      </div>
-      <div id="bus-departures" class="loading">
-        <div class="loading-spinner"></div>
-        <div>H&auml;mtar avg&aring;ngar...</div>
+        <div id="bus-departures" class="loading">
+          <div class="loading-spinner"></div>
+          <div>H&auml;mtar avg&aring;ngar...</div>
+        </div>
       </div>
     </div>
   </div>
