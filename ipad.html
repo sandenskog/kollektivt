@@ -128,6 +128,7 @@
     .departure-row {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       padding: 14px 18px;
       border-radius: 16px;
     }
@@ -397,6 +398,13 @@
         }
       }
 
+      let deviationHtml = '';
+      if (dep.deviations && dep.deviations.length > 0) {
+        deviationHtml = dep.deviations
+          .map(d => `<div class="deviation">&#9888;&#65039; ${d.message}</div>`)
+          .join('');
+      }
+
       return `
         <div class="departure-row">
           <div class="dep-left">
@@ -409,6 +417,7 @@
             ${statusHtml}
             <div class="dep-destination">${destination}</div>
           </div>
+          ${deviationHtml ? `<div style="width:100%;margin-top:4px;">${deviationHtml}</div>` : ''}
         </div>
       `;
     }
