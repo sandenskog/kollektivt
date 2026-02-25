@@ -11,7 +11,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    
     - name: Deploy via rsync
       uses: burnett01/rsync-deployments@6.0.0
       with:
