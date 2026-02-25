@@ -1,16 +1,24 @@
-- name: Deploy to Synology via SSH
-      uses: appleboy/ssh-action@master
+name: Deploy to Synology
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy via rsync
+      uses: burnett01/rsync-deployments@6.0.0
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        script_stop: true
-        command_timeout: 30m
-        script: |
-          mkdir -p /volume1/web/apps/kollektivt
-          cd /volume1/web/apps/kollektivt
-          if [ ! -d ".git" ]; then
-            git clone https://github.com/sandenskog/kollektivt.git .
-          fi
-          git pull origin main
+        switches: -avzr --delete
+        path: ./
+        remote_path: /volume1/web/apps/kollektivt/
+        remote_host: ${{ secrets.SSH_HOST }}
+        remote_user: ${{ secrets.SSH_USER }}
+        remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        remote_port: ${{ secrets.SSH_PORT }}
