@@ -1,0 +1,35 @@
+name: Deploy to Synology
+
+on:
+  push:
+    branches: [ main ]  # Ändra till "master" om det är din huvudbranch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to Synology via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          # Skapa mappen om den inte finns
+          mkdir -p /web/apps/kollektivt
+          
+          # Gå till mappen
+          cd /web/apps/kollektivt
+          
+          # Om git repo inte finns, klona det
+          if [ ! -d ".git" ]; then
+            git clone https://github.com/sandenskog/kollektivt.git .
+          fi
+          
+          # Annars, pull senaste ändringar
+          git pull origin main
