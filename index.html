@@ -411,12 +411,27 @@
           <div>H&auml;mtar avg&aring;ngar...</div>
         </div>
       </div>
+
+      <div class="section" id="bus840-section">
+        <div class="section-header">
+          <span class="section-icon">&#128653;</span>
+          <div>
+            <div class="section-title">Buss 840 fr&aring;n M&aring;rdv&auml;gen</div>
+            <div class="section-subtitle">Mot Nacka strand</div>
+          </div>
+        </div>
+        <div id="bus840-departures" class="loading">
+          <div class="loading-spinner"></div>
+          <div>H&auml;mtar avg&aring;ngar...</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     const VEGA_SITE_ID = 9733;
     const KVARN_SITE_ID = 8262;
+    const MARD_SITE_ID = 8243;
     const API_BASE = 'https://transport.integration.sl.se/v1/sites';
     const REFRESH_INTERVAL = 30000; // 30 seconds
 
@@ -526,7 +541,7 @@
       }
     }
 
-    async function updateBuses() {
+    async function updateBuses810() {
       const container = document.getElementById('bus-departures');
       try {
         const data = await fetchDepartures(KVARN_SITE_ID);
@@ -544,7 +559,29 @@
         }
       } catch (err) {
         container.innerHTML = '<div class="no-departures">&#128533; Kunde inte h&auml;mta avg&aring;ngar</div>';
-        console.error('Bus fetch error:', err);
+        console.error('Bus 810 fetch error:', err);
+      }
+    }
+
+    async function updateBuses840() {
+      const container = document.getElementById('bus840-departures');
+      try {
+        const data = await fetchDepartures(MARD_SITE_ID);
+        const departures = (data.departures || [])
+          .filter(d =>
+            d.line?.designation === '840' &&
+            d.direction_code === 1
+          )
+          .slice(0, 4);
+
+        if (departures.length === 0) {
+          container.innerHTML = '<div class="no-departures">&#128564; Inga kommande buss 840 mot Nacka strand just nu</div>';
+        } else {
+          container.innerHTML = departures.map(d => renderDeparture(d, 'bus')).join('');
+        }
+      } catch (err) {
+        container.innerHTML = '<div class="no-departures">&#128533; Kunde inte h&auml;mta avg&aring;ngar</div>';
+        console.error('Bus 840 fetch error:', err);
       }
     }
 
@@ -555,7 +592,7 @@
     }
 
     async function refreshAll() {
-      await Promise.all([updateTrains(), updateBuses()]);
+      await Promise.all([updateTrains(), updateBuses810(), updateBuses840()]);
       updateTimestamp();
     }
 

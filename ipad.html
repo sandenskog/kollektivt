@@ -68,6 +68,19 @@
       flex-direction: column;
     }
 
+    .bus-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .bus-column .section {
+      flex: 1;
+      min-height: 0;
+    }
+
     .section-label {
       display: flex;
       align-items: center;
@@ -158,7 +171,7 @@
 
     .dep-minutes {
       font-weight: 900;
-      font-size: 5rem;
+      font-size: 4rem;
       line-height: 1;
       color: #5c4d7d;
     }
@@ -292,18 +305,36 @@
         </div>
       </div>
 
-      <div class="section bus-section">
-        <div class="section-label">
-          <span class="section-icon">&#128653;</span>
-          <div>
-            <h2>Buss</h2>
-            <div class="section-sub">810 fr&aring;n Kvarntorpsv&auml;gen mot Gullmarsplan</div>
+      <div class="bus-column">
+        <div class="section bus-section">
+          <div class="section-label">
+            <span class="section-icon">&#128653;</span>
+            <div>
+              <h2>Buss 810</h2>
+              <div class="section-sub">Kvarntorpsv&auml;gen mot Gullmarsplan</div>
+            </div>
+          </div>
+          <div class="departures" id="bus-departures">
+            <div class="loading">
+              <div class="loading-spinner"></div>
+              <div>H&auml;mtar...</div>
+            </div>
           </div>
         </div>
-        <div class="departures" id="bus-departures">
-          <div class="loading">
-            <div class="loading-spinner"></div>
-            <div>H&auml;mtar...</div>
+
+        <div class="section bus-section bus-840-section">
+          <div class="section-label">
+            <span class="section-icon">&#128653;</span>
+            <div>
+              <h2>Buss 840</h2>
+              <div class="section-sub">M&aring;rdv&auml;gen mot Nacka strand</div>
+            </div>
+          </div>
+          <div class="departures" id="bus840-departures">
+            <div class="loading">
+              <div class="loading-spinner"></div>
+              <div>H&auml;mtar...</div>
+            </div>
           </div>
         </div>
       </div>
@@ -313,6 +344,7 @@
   <script>
     const VEGA_SITE_ID = 9733;
     const KVARN_SITE_ID = 8262;
+    const MARD_SITE_ID = 8243;
     const API_BASE = 'https://transport.integration.sl.se/v1/sites';
     const REFRESH_INTERVAL = 30000;
 
@@ -405,13 +437,30 @@
       }
     }
 
-    async function updateBuses() {
+    async function updateBuses810() {
       const container = document.getElementById('bus-departures');
       try {
         const data = await fetchDepartures(KVARN_SITE_ID);
         const departures = (data.departures || [])
           .filter(d => d.line?.designation === '810' && d.direction_code === 2)
-          .slice(0, 3);
+          .slice(0, 2);
+        if (departures.length === 0) {
+          container.innerHTML = '<div class="no-departures">&#128564; Inga bussar just nu</div>';
+        } else {
+          container.innerHTML = departures.map(d => renderDeparture(d, 'bus')).join('');
+        }
+      } catch (err) {
+        container.innerHTML = '<div class="no-departures">&#128533; Kunde inte h&auml;mta</div>';
+      }
+    }
+
+    async function updateBuses840() {
+      const container = document.getElementById('bus840-departures');
+      try {
+        const data = await fetchDepartures(MARD_SITE_ID);
+        const departures = (data.departures || [])
+          .filter(d => d.line?.designation === '840' && d.direction_code === 1)
+          .slice(0, 2);
         if (departures.length === 0) {
           container.innerHTML = '<div class="no-departures">&#128564; Inga bussar just nu</div>';
         } else {
@@ -429,7 +478,7 @@
     }
 
     async function refreshAll() {
-      await Promise.all([updateTrains(), updateBuses()]);
+      await Promise.all([updateTrains(), updateBuses810(), updateBuses840()]);
       updateTimestamp();
     }
 
