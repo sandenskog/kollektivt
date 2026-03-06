@@ -9,11 +9,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Search
 
-- [ ] **SRCH-01**: User can type an address and get autocomplete suggestions
+- [x] **SRCH-01**: User can type an address and get autocomplete suggestions
 - [x] **SRCH-02**: User can see nearby stops based on entered address (within ~1km radius)
-- [ ] **SRCH-03**: User can use browser geolocation as alternative to typing address
-- [ ] **SRCH-04**: User can select/deselect stops to monitor
-- [ ] **SRCH-05**: User's selected stops and address persist across sessions (localStorage)
+- [x] **SRCH-03**: User can use browser geolocation as alternative to typing address
+- [x] **SRCH-04**: User can select/deselect stops to monitor
+- [x] **SRCH-05**: User's selected stops and address persist across sessions (localStorage)
 
 ### Departures
 
@@ -68,11 +68,11 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SRCH-01 | Phase 1 | Pending |
+| SRCH-01 | Phase 1 | Complete |
 | SRCH-02 | Phase 1 | Complete |
-| SRCH-03 | Phase 1 | Pending |
-| SRCH-04 | Phase 1 | Pending |
-| SRCH-05 | Phase 1 | Pending |
+| SRCH-03 | Phase 1 | Complete |
+| SRCH-04 | Phase 1 | Complete |
+| SRCH-05 | Phase 1 | Complete |
 | DEPT-01 | Phase 2 | Pending |
 | DEPT-02 | Phase 2 | Pending |
 | DEPT-03 | Phase 2 | Pending |
