@@ -1,5 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNominatim } from '../hooks/useNominatim';
+import type { NominatimResult } from '../types';
+
+function shortAddress(r: NominatimResult): string {
+  const a = r.address;
+  if (!a) return r.display_name;
+  const road = a.road
+    ? (a.house_number ? `${a.road} ${a.house_number}` : a.road)
+    : null;
+  const city = a.city || a.town || a.village || a.suburb || '';
+  if (road && city) return `${road}, ${city}`;
+  if (road) return road;
+  if (city) return city;
+  return r.display_name;
+}
 
 interface SearchBarProps {
   onSelectAddress: (lat: number, lon: number) => void;
@@ -61,11 +75,11 @@ export function SearchBar({ onSelectAddress, onRequestLocation, locationLoading 
               className="search-dropdown-item"
               onClick={() => {
                 onSelectAddress(parseFloat(r.lat), parseFloat(r.lon));
-                setQuery(r.display_name);
+                setQuery(shortAddress(r));
                 setOpen(false);
               }}
             >
-              {r.display_name}
+              {shortAddress(r)}
             </li>
           ))}
         </ul>

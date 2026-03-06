@@ -12,6 +12,14 @@ export interface NominatimResult {
   display_name: string;
   lat: string;
   lon: string;
+  address?: {
+    road?: string;
+    house_number?: string;
+    city?: string;
+    town?: string;
+    village?: string;
+    suburb?: string;
+  };
 }
 
 // A stop with computed distance (from findNearbyStops)

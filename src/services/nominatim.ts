@@ -9,6 +9,7 @@ export async function searchAddress(
     format: 'jsonv2',
     countrycodes: 'se',
     limit: '5',
+    addressdetails: '1',
     'accept-language': 'sv',
   });
 
