@@ -59,11 +59,11 @@ Plans:
   2. Dashboard/compact mode toggle works for always-on displays (e.g. wall-mounted tablet)
   3. Loading states, API errors, and network failures show clear messages with retry buttons
   4. App is live and accessible at kollektivt.sandenskog.se
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Responsive CSS, dashboard mode hook/toggle, ErrorBoundary, error retry buttons
+- [ ] 03-02-PLAN.md — Docker build, Synology deployment, reverse proxy + SSL setup
 
 ## Progress
 
