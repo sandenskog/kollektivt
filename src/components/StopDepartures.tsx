@@ -8,6 +8,7 @@ interface StopDeparturesProps {
   error: boolean;
   filters: StopFilters;
   onFiltersChange: (filters: StopFilters) => void;
+  refresh: () => void;
   tick: number;
 }
 
@@ -53,6 +54,7 @@ export function StopDepartures({
   error,
   filters,
   onFiltersChange,
+  refresh,
   tick,
 }: StopDeparturesProps) {
   return (
@@ -63,7 +65,12 @@ export function StopDepartures({
       {!response && !error && <p className="stop-loading">Loading departures...</p>}
 
       {/* Error with no data */}
-      {error && !response && <p className="stop-error">Could not load departures</p>}
+      {error && !response && (
+        <div className="stop-error">
+          <span>Could not load departures</span>
+          <button className="retry-btn" onClick={refresh}>Retry</button>
+        </div>
+      )}
 
       {/* Error with stale data */}
       {error && response && <p className="update-error">Could not update</p>}

@@ -40,6 +40,7 @@ export function DepartureList({
           error={errors.get(stop.id) ?? false}
           filters={filters[stop.id] ?? {}}
           onFiltersChange={(f) => onFiltersChange(stop.id, f)}
+          refresh={refresh}
           tick={tick}
         />
       ))}

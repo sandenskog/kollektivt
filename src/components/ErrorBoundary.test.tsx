@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ErrorBoundary } from './ErrorBoundary';
 
@@ -39,13 +39,19 @@ describe('ErrorBoundary', () => {
   });
 
   it('clicking Try again resets error state', () => {
-    let shouldThrow = true;
+    // React 19 concurrent rendering re-throws caught errors as unhandled
+    const handler = (e: ErrorEvent) => { e.preventDefault(); };
+    window.addEventListener('error', handler);
+
+    let throwCount = 0;
     function Wrapper() {
-      if (shouldThrow) throw new Error('boom');
+      throwCount++;
+      // Only throw on the first render
+      if (throwCount === 1) throw new Error('boom');
       return <div>Recovered</div>;
     }
 
-    const { rerender } = render(
+    render(
       <ErrorBoundary>
         <Wrapper />
       </ErrorBoundary>
@@ -53,11 +59,10 @@ describe('ErrorBoundary', () => {
 
     expect(screen.getByText('Something went wrong')).toBeDefined();
 
-    // Fix the component before clicking retry
-    shouldThrow = false;
-
     fireEvent.click(screen.getByText('Try again'));
 
     expect(screen.getByText('Recovered')).toBeDefined();
+
+    window.removeEventListener('error', handler);
   });
 });

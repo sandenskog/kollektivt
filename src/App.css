@@ -1,9 +1,9 @@
 /* For placement only — final design deferred to Phase 3 */
 
 .app {
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 16px;
+  padding: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -45,6 +45,7 @@
   background: #fff;
   cursor: pointer;
   white-space: nowrap;
+  min-height: 44px;
 }
 
 .location-button:hover {
@@ -105,6 +106,7 @@
   margin-bottom: 4px;
   cursor: pointer;
   transition: background 0.1s;
+  min-height: 44px;
 }
 
 .stop-item:hover {
@@ -300,12 +302,15 @@
 }
 
 .filter-chip {
-  padding: 0.2rem 0.5rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 12px;
   border: 1px solid #ccc;
   background: white;
   cursor: pointer;
   font-size: 0.8rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .filter-chip.active {
@@ -341,4 +346,89 @@
 .stop-error {
   color: #d71d24;
   font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retry-btn {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.retry-btn:hover {
+  background: #f5f5f5;
+}
+
+/* App header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.app-header .app-title {
+  margin: 0;
+}
+
+/* Dashboard toggle button */
+.dashboard-toggle {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.dashboard-toggle:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 768px) {
+  .app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app {
+    max-width: 800px;
+  }
+}
+
+/* Dashboard mode */
+.app.dashboard-mode .search-bar,
+.app.dashboard-mode .stop-list,
+.app.dashboard-mode .my-stops,
+.app.dashboard-mode .instruction-text {
+  display: none;
+}
+
+.app.dashboard-mode .app-title {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.app.dashboard-mode .departure-row {
+  padding: 0.15rem 0;
+  font-size: 0.85rem;
+}
+
+.app.dashboard-mode .filter-section {
+  display: none;
+}
+
+.app.dashboard-mode .filters-container {
+  display: none;
 }
