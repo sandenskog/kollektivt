@@ -32,9 +32,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Design
 
-- [ ] **DSGN-01**: Responsive layout works on mobile, tablet, and desktop
-- [ ] **DSGN-02**: Compact/dashboard mode toggle for always-on displays
-- [ ] **DSGN-03**: Clear loading and error states with retry capability
+- [x] **DSGN-01**: Responsive layout works on mobile, tablet, and desktop
+- [x] **DSGN-02**: Compact/dashboard mode toggle for always-on displays
+- [x] **DSGN-03**: Clear loading and error states with retry capability
 
 ### Infrastructure
 
@@ -82,9 +82,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | FILT-01 | Phase 2 | Complete |
 | FILT-02 | Phase 2 | Complete |
 | FILT-03 | Phase 2 | Complete |
-| DSGN-01 | Phase 3 | Pending |
-| DSGN-02 | Phase 3 | Pending |
-| DSGN-03 | Phase 3 | Pending |
+| DSGN-01 | Phase 3 | Complete |
+| DSGN-02 | Phase 3 | Complete |
+| DSGN-03 | Phase 3 | Complete |
 | INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 3 | Pending |
 | INFR-03 | Phase 1 | Complete |

@@ -62,7 +62,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Responsive CSS, dashboard mode hook/toggle, ErrorBoundary, error retry buttons
+- [x] 03-01-PLAN.md — Responsive CSS, dashboard mode hook/toggle, ErrorBoundary, error retry buttons
 - [ ] 03-02-PLAN.md — Docker build, Synology deployment, reverse proxy + SSL setup
 
 ## Progress
@@ -74,4 +74,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Search and Stop Selection | 2/2 | Complete | 2026-03-06 |
 | 2. Live Departures | 2/2 | Complete   | 2026-03-06 |
-| 3. Responsive Design and Deployment | 0/2 | Not started | - |
+| 3. Responsive Design and Deployment | 1/2 | In progress | - |
