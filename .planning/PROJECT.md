@@ -45,7 +45,7 @@ Det finns redan en bakgrundsbild (`bg.jpg`) och en visuell stil med Nunito-typsn
 ## Constraints
 
 - **API**: SL:s öppna API:er — inga API-nycklar eller autentisering
-- **Hosting**: Statiska filer på Synology NAS via Docker
+- **Hosting**: Statiska filer på Synology NAS via Docker, hostas på `kollektivt.sandenskog.se` (reverse proxy sätts upp på NAS:en)
 - **Tech**: Rent frontend, inga build-steg krävs men moderna verktyg är okej
 - **Design**: Minimalistisk, ljus design — visuell styling görs i slutfasen
 
