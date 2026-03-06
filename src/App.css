@@ -156,3 +156,189 @@
   text-align: center;
   margin: 32px 0;
 }
+
+/* Departure components */
+.departure-list {
+  margin-top: 1rem;
+}
+
+.departure-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.departure-list-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.departure-loading {
+  color: #888;
+  font-size: 0.875rem;
+}
+
+.stop-departures {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.stop-departures h3 {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.departure-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.departure-row.cancelled {
+  opacity: 0.5;
+}
+
+.mode-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.mode-metro {
+  background: #007852;
+}
+
+.mode-bus {
+  background: #d71d24;
+}
+
+.mode-train {
+  background: #ec619f;
+}
+
+.mode-tram {
+  background: #7b7979;
+}
+
+.line-designation {
+  font-weight: 600;
+  min-width: 2rem;
+}
+
+.departure-destination {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.departure-time {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+
+.countdown {
+  font-weight: 600;
+}
+
+.absolute-time {
+  color: #888;
+}
+
+.scheduled-time {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.delay-indicator {
+  color: #d71d24;
+  font-size: 0.8rem;
+}
+
+.cancelled-label {
+  color: #888;
+  font-style: italic;
+}
+
+.disruption-banner {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.disruption-banner p {
+  margin: 0.25rem 0;
+}
+
+.filters-container {
+  margin: 0.5rem 0;
+}
+
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0.25rem 0;
+}
+
+.filter-chip {
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.filter-chip.active {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+
+.refresh-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+}
+
+.refresh-btn:hover {
+  opacity: 0.7;
+}
+
+.update-error {
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin: 0.25rem 0;
+}
+
+.stop-loading {
+  color: #888;
+  font-size: 0.875rem;
+}
+
+.stop-error {
+  color: #d71d24;
+  font-size: 0.875rem;
+}
