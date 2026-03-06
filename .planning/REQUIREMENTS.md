@@ -26,9 +26,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Filtering
 
-- [ ] **FILT-01**: User can filter departures by direction per stop
-- [ ] **FILT-02**: User can filter departures by specific lines per stop
-- [ ] **FILT-03**: Filter preferences persist in localStorage
+- [x] **FILT-01**: User can filter departures by direction per stop
+- [x] **FILT-02**: User can filter departures by specific lines per stop
+- [x] **FILT-03**: Filter preferences persist in localStorage
 
 ### Design
 
@@ -79,9 +79,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | DEPT-04 | Phase 2 | Complete |
 | DEPT-05 | Phase 2 | Complete |
 | DEPT-06 | Phase 2 | Complete |
-| FILT-01 | Phase 2 | Pending |
-| FILT-02 | Phase 2 | Pending |
-| FILT-03 | Phase 2 | Pending |
+| FILT-01 | Phase 2 | Complete |
+| FILT-02 | Phase 2 | Complete |
+| FILT-03 | Phase 2 | Complete |
 | DSGN-01 | Phase 3 | Pending |
 | DSGN-02 | Phase 3 | Pending |
 | DSGN-03 | Phase 3 | Pending |

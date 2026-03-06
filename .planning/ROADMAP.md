@@ -13,7 +13,7 @@ Kollektivt omvandlas från en hardkodad avgångssida till en konfigurerbar realt
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Search and Stop Selection** - Project scaffolding, data layer, address search, and stop selection with persistence
-- [ ] **Phase 2: Live Departures** - Real-time departure display with auto-refresh, delays, disruptions, and filtering
+- [x] **Phase 2: Live Departures** - Real-time departure display with auto-refresh, delays, disruptions, and filtering (completed 2026-03-06)
 - [ ] **Phase 3: Responsive Design and Deployment** - Responsive layout, dashboard mode, error states, and production deployment
 
 ## Phase Details
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Search and Stop Selection | 2/2 | Complete | 2026-03-06 |
-| 2. Live Departures | 1/2 | In Progress|  |
+| 2. Live Departures | 2/2 | Complete   | 2026-03-06 |
 | 3. Responsive Design and Deployment | 0/2 | Not started | - |
