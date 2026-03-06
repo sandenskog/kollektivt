@@ -44,11 +44,11 @@ Plans:
   3. Active disruptions and deviation messages appear alongside affected departures
   4. Departures update automatically without user interaction (every 30s)
   5. User can filter departures by direction and by specific lines, and filter choices persist across sessions
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Define departure types, build API service with tests, polling hook, extend localStorage schema
+- [ ] 02-02-PLAN.md — Build departure UI components (DepartureList, StopDepartures, DepartureRow, DepartureFilters), wire App.tsx, verify flow
 
 ### Phase 3: Responsive Design and Deployment
 **Goal**: The app works well on all screen sizes from mobile to desktop, includes a dashboard mode, and is live on kollektivt.sandenskog.se
@@ -72,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Search and Stop Selection | 0/2 | Not started | - |
+| 1. Search and Stop Selection | 2/2 | Complete | 2026-03-06 |
 | 2. Live Departures | 0/2 | Not started | - |
 | 3. Responsive Design and Deployment | 0/2 | Not started | - |
