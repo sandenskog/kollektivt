@@ -10,7 +10,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Search
 
 - [ ] **SRCH-01**: User can type an address and get autocomplete suggestions
-- [ ] **SRCH-02**: User can see nearby stops based on entered address (within ~1km radius)
+- [x] **SRCH-02**: User can see nearby stops based on entered address (within ~1km radius)
 - [ ] **SRCH-03**: User can use browser geolocation as alternative to typing address
 - [ ] **SRCH-04**: User can select/deselect stops to monitor
 - [ ] **SRCH-05**: User's selected stops and address persist across sessions (localStorage)
@@ -38,9 +38,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFR-01**: Pure frontend — no backend server required
+- [x] **INFR-01**: Pure frontend — no backend server required
 - [ ] **INFR-02**: Hosted on kollektivt.sandenskog.se via Synology Docker
-- [ ] **INFR-03**: localStorage schema includes version for future migrations
+- [x] **INFR-03**: localStorage schema includes version for future migrations
 
 ## v2 Requirements
 
@@ -69,7 +69,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | SRCH-01 | Phase 1 | Pending |
-| SRCH-02 | Phase 1 | Pending |
+| SRCH-02 | Phase 1 | Complete |
 | SRCH-03 | Phase 1 | Pending |
 | SRCH-04 | Phase 1 | Pending |
 | SRCH-05 | Phase 1 | Pending |
@@ -85,9 +85,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-01 | Phase 3 | Pending |
 | DSGN-02 | Phase 3 | Pending |
 | DSGN-03 | Phase 3 | Pending |
-| INFR-01 | Phase 1 | Pending |
+| INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 3 | Pending |
-| INFR-03 | Phase 1 | Pending |
+| INFR-03 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 20 total
