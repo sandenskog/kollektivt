@@ -3,5 +3,5 @@ services:
   kollektivt:
     build: .
     ports:
-      - "3300:80"
+      - "3900:80"
     restart: unless-stopped
