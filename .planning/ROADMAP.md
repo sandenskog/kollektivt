@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Search and Stop Selection | 2/2 | Complete | 2026-03-06 |
-| 2. Live Departures | 0/2 | Not started | - |
+| 2. Live Departures | 1/2 | In Progress|  |
 | 3. Responsive Design and Deployment | 0/2 | Not started | - |

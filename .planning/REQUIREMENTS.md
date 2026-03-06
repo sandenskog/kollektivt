@@ -17,12 +17,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Departures
 
-- [ ] **DEPT-01**: User sees real-time departures from selected stops, grouped by stop
-- [ ] **DEPT-02**: Delays shown clearly (scheduled vs expected time, status badge)
-- [ ] **DEPT-03**: Disruption/deviation messages displayed per departure
-- [ ] **DEPT-04**: Departures auto-refresh every 30 seconds
-- [ ] **DEPT-05**: Transport mode indicated visually (bus, train, metro, tram icons/badges)
-- [ ] **DEPT-06**: Both countdown ("3 min") and absolute time ("14:23") shown
+- [x] **DEPT-01**: User sees real-time departures from selected stops, grouped by stop
+- [x] **DEPT-02**: Delays shown clearly (scheduled vs expected time, status badge)
+- [x] **DEPT-03**: Disruption/deviation messages displayed per departure
+- [x] **DEPT-04**: Departures auto-refresh every 30 seconds
+- [x] **DEPT-05**: Transport mode indicated visually (bus, train, metro, tram icons/badges)
+- [x] **DEPT-06**: Both countdown ("3 min") and absolute time ("14:23") shown
 
 ### Filtering
 
@@ -73,12 +73,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | SRCH-03 | Phase 1 | Complete |
 | SRCH-04 | Phase 1 | Complete |
 | SRCH-05 | Phase 1 | Complete |
-| DEPT-01 | Phase 2 | Pending |
-| DEPT-02 | Phase 2 | Pending |
-| DEPT-03 | Phase 2 | Pending |
-| DEPT-04 | Phase 2 | Pending |
-| DEPT-05 | Phase 2 | Pending |
-| DEPT-06 | Phase 2 | Pending |
+| DEPT-01 | Phase 2 | Complete |
+| DEPT-02 | Phase 2 | Complete |
+| DEPT-03 | Phase 2 | Complete |
+| DEPT-04 | Phase 2 | Complete |
+| DEPT-05 | Phase 2 | Complete |
+| DEPT-06 | Phase 2 | Complete |
 | FILT-01 | Phase 2 | Pending |
 | FILT-02 | Phase 2 | Pending |
 | FILT-03 | Phase 2 | Pending |
