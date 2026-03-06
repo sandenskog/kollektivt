@@ -28,11 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can tap "Use my location" and get nearby stops without typing
   4. User can select and deselect stops, and selections survive a page reload
   5. App runs entirely in the browser with no backend server
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Scaffold Vite+React+TS project, define types, build data layer (services + hooks)
+- [ ] 01-02-PLAN.md — Build UI components (SearchBar, StopList, StopItem, MyStops), wire App.tsx, verify flow
 
 ### Phase 2: Live Departures
 **Goal**: Users see real-time departures from their selected stops with delay info, disruptions, and can filter by direction and line
