@@ -1,7 +1,17 @@
-version: "3"
 services:
-  kollektivt:
+  web:
     build: .
-    ports:
-      - "3900:80"
+    container_name: kollektivt
     restart: unless-stopped
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kollektivt.rule=Host(`kollektivt.sandenskog.se`)"
+      - "traefik.http.routers.kollektivt.entrypoints=websecure"
+      - "traefik.http.routers.kollektivt.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kollektivt.middlewares=secured@file"
+
+networks:
+  traefik-public:
+    external: true
