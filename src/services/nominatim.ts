@@ -4,28 +4,23 @@ export async function searchAddress(
   query: string,
   signal?: AbortSignal
 ): Promise<NominatimResult[]> {
-  const params = new URLSearchParams({
-    q: query,
-    format: 'jsonv2',
-    countrycodes: 'se',
-    limit: '5',
-    addressdetails: '1',
-    'accept-language': 'sv',
-  });
-
+  // Kartor Plattform geocode (self-hosted Nominatim backend, SE-scope) — replaces
+  // public nominatim.openstreetmap.org (1 req/s policy). Returns { results: [...] }.
   const res = await fetch(
-    `https://nominatim.openstreetmap.org/search?${params}`,
-    {
-      signal,
-      headers: {
-        'User-Agent': 'Kollektivt/1.0 (kollektivt.sandenskog.se)',
-      },
-    }
+    `https://karta.muskot.se/api/geocode?q=${encodeURIComponent(query)}`,
+    { signal }
   );
 
   if (!res.ok) {
-    throw new Error(`Nominatim error: ${res.status} ${res.statusText}`);
+    throw new Error(`Geocode error: ${res.status} ${res.statusText}`);
   }
 
-  return res.json();
+  const data = (await res.json()) as {
+    results?: Array<{ lat: number | string; lon: number | string; display_name: string }>;
+  };
+  return (data.results ?? []).map((r) => ({
+    lat: String(r.lat),
+    lon: String(r.lon),
+    display_name: r.display_name,
+  }));
 }
